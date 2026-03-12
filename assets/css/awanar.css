@@ -1,0 +1,565 @@
+/* =========================================================
+   AWANAR Agency — Paleta de Cores / Theme Override
+   Carregado APÓS todos os CSS do template para sobrescrever.
+   NÃO edite os CSS originais — faça ajustes aqui.
+   ========================================================= */
+
+/* ----------------------------------------------------------
+   1. VARIÁVEIS DE CORES
+   ---------------------------------------------------------- */
+:root {
+  --awanar-bg:    #05070B;
+  --awanar-navy:  #0B1220;
+  --awanar-deep:  #17203C;
+  --awanar-ivory: #ECE6DC;
+  --awanar-gold:  #D7A55F;
+
+  /* Sobrescrever variáveis Bootstrap para propagação automática */
+  --bs-primary:          #D7A55F;
+  --bs-primary-rgb:      215, 165, 95;
+  --bs-body-bg:          #05070B;
+  --bs-body-color:       #ECE6DC;
+  --bs-dark:             #0B1220;
+  --bs-dark-rgb:         11, 18, 32;
+  --bs-light-gray:       #17203C;
+  --bs-light-gray-rgb:   23, 32, 60;
+  --bs-heading-color:    #ECE6DC;
+  --bs-link-color:       #ECE6DC;
+  --bs-link-hover-color: #D7A55F;
+  --bs-border-color:     rgba(215, 165, 95, 0.18);
+}
+
+/* ----------------------------------------------------------
+   2. BASE — HTML / BODY
+   ---------------------------------------------------------- */
+html,
+body {
+  background-color: var(--awanar-bg) !important;
+  color: var(--awanar-ivory) !important;
+}
+
+/* ----------------------------------------------------------
+   3. TIPOGRAFIA GERAL
+   ---------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  color: var(--awanar-ivory) !important;
+}
+
+p, li, small, span,
+.text-muted,
+.fs-6, .fs-7 {
+  color: rgba(236, 230, 220, 0.85) !important;
+}
+
+a {
+  color: var(--awanar-ivory);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--awanar-gold) !important;
+}
+
+/* ----------------------------------------------------------
+   4. HEADER / NAVBAR
+   ---------------------------------------------------------- */
+.header,
+header,
+.navbar {
+  background: rgba(11, 18, 32, 0.94) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-color: rgba(215, 165, 95, 0.3) !important; /* border-top da navbar */
+}
+
+/* Botão hambúrguer — fundo escuro */
+.btn.toggle-menu,
+.btn.toggle-menu.bg-white {
+  background: var(--awanar-deep) !important;
+  border-color: rgba(215, 165, 95, 0.3) !important;
+}
+.btn.toggle-menu .menu-icon,
+.btn.toggle-menu iconify-icon {
+  color: var(--awanar-ivory) !important;
+}
+
+/* Dropdown de menu */
+.dropdown-menu {
+  background: var(--awanar-navy) !important;
+  border: 1px solid rgba(215, 165, 95, 0.2) !important;
+}
+.dropdown-item {
+  color: var(--awanar-ivory) !important;
+}
+.dropdown-item:hover {
+  background: var(--awanar-deep) !important;
+  color: var(--awanar-gold) !important;
+}
+
+/* ----------------------------------------------------------
+   5. BOTÕES
+   ---------------------------------------------------------- */
+.btn-primary,
+.btn.btn-primary {
+  background: var(--awanar-gold) !important;
+  border-color: var(--awanar-gold) !important;
+  color: var(--awanar-bg) !important;
+  font-weight: 600;
+}
+.btn-primary:hover,
+.btn.btn-primary:hover {
+  background: #c4904a !important;
+  border-color: #c4904a !important;
+}
+
+.btn-outline-light,
+.btn.btn-outline-light {
+  color: var(--awanar-ivory) !important;
+  border-color: rgba(236, 230, 220, 0.4) !important;
+}
+.btn-outline-light:hover,
+.btn.btn-outline-light:hover {
+  background: var(--awanar-gold) !important;
+  border-color: var(--awanar-gold) !important;
+  color: var(--awanar-bg) !important;
+}
+
+/* Botões dark/white do dropdown de sign in */
+.btn.btn-dark,
+.btn.bg-dark {
+  background: var(--awanar-deep) !important;
+  border-color: var(--awanar-deep) !important;
+  color: var(--awanar-ivory) !important;
+}
+.btn.btn-outline-light.bg-white,
+.btn.bg-white {
+  background: var(--awanar-navy) !important;
+  border-color: rgba(215, 165, 95, 0.3) !important;
+  color: var(--awanar-ivory) !important;
+}
+
+/* ----------------------------------------------------------
+   6. CORES SEMÂNTICAS — PRIMARY / DARK
+   ---------------------------------------------------------- */
+.text-primary {
+  color: var(--awanar-gold) !important;
+}
+.bg-primary {
+  background-color: var(--awanar-gold) !important;
+}
+.border-primary {
+  border-color: var(--awanar-gold) !important;
+}
+
+/* Badges e círculos numerados (01, 02, 03…) */
+.bg-primary.rounded-circle,
+.bg-primary.round-36,
+.bg-primary.hstack {
+  background-color: var(--awanar-gold) !important;
+  color: var(--awanar-bg) !important;
+}
+
+/* Text-bg-dark (badges escuras do template) */
+.text-bg-dark,
+.badge.text-bg-dark {
+  background-color: var(--awanar-deep) !important;
+  color: var(--awanar-ivory) !important;
+}
+
+/* ----------------------------------------------------------
+   7. SEÇÕES — FUNDOS
+   ---------------------------------------------------------- */
+
+/* bg-light-gray → deep navy */
+.bg-light-gray {
+  background-color: var(--awanar-navy) !important;
+}
+
+/* Seção services (bg-dark) */
+.bg-dark,
+section.bg-dark {
+  background-color: var(--awanar-deep) !important;
+}
+
+/* Page wrapper / overflow */
+.page-wrapper {
+  background-color: var(--awanar-bg) !important;
+}
+
+/* Banner hero */
+.banner-section {
+  background-color: var(--awanar-bg) !important;
+}
+
+/* ----------------------------------------------------------
+   8. CARDS
+   ---------------------------------------------------------- */
+.card {
+  background-color: var(--awanar-navy) !important;
+  border: 1px solid rgba(215, 165, 95, 0.18) !important;
+  color: var(--awanar-ivory) !important;
+}
+.card .card-title,
+.card h1, .card h2, .card h3,
+.card h4, .card h5, .card h6 {
+  color: var(--awanar-ivory) !important;
+}
+.card p, .card small, .card span,
+.card .text-muted {
+  color: rgba(236, 230, 220, 0.80) !important;
+}
+
+/* Card "bg-primary" (destaque ouro) — manter gold mas garantir texto legível */
+.card.bg-primary {
+  background-color: var(--awanar-gold) !important;
+  border-color: var(--awanar-gold) !important;
+}
+.card.bg-primary h1, .card.bg-primary h2,
+.card.bg-primary h3, .card.bg-primary h4,
+.card.bg-primary h5, .card.bg-primary h6,
+.card.bg-primary p, .card.bg-primary span,
+.card.bg-primary small {
+  color: var(--awanar-bg) !important;
+}
+
+/* Card bg-dark */
+.card.bg-dark {
+  background-color: var(--awanar-deep) !important;
+}
+
+/* ----------------------------------------------------------
+   9. LINHA DIVISÓRIA / HR
+   ---------------------------------------------------------- */
+hr,
+.border-line {
+  border-color: rgba(215, 165, 95, 0.25) !important;
+  opacity: 1;
+}
+
+/* ----------------------------------------------------------
+   10. ÍCONES BRANCOS EM CÍRCULO (btn-icon)
+   ---------------------------------------------------------- */
+.btn-icon.bg-white,
+.bg-white.rounded-circle {
+  background: var(--awanar-deep) !important;
+  color: var(--awanar-ivory) !important;
+}
+.btn-icon.bg-white iconify-icon,
+.bg-white.rounded-circle iconify-icon {
+  color: var(--awanar-ivory) !important;
+}
+
+/* ----------------------------------------------------------
+   11. FOOTER
+   ---------------------------------------------------------- */
+footer,
+.footer {
+  background-color: var(--awanar-navy) !important;
+  border-top: 1px solid rgba(215, 165, 95, 0.2) !important;
+  color: var(--awanar-ivory) !important;
+}
+footer a, .footer a {
+  color: rgba(236, 230, 220, 0.75);
+}
+footer a:hover, .footer a:hover {
+  color: var(--awanar-gold) !important;
+}
+
+/* ----------------------------------------------------------
+   12. FORMULÁRIOS E INPUTS
+   ---------------------------------------------------------- */
+.form-control,
+.form-select {
+  background-color: var(--awanar-deep) !important;
+  border-color: rgba(215, 165, 95, 0.25) !important;
+  color: var(--awanar-ivory) !important;
+}
+.form-control::placeholder {
+  color: rgba(236, 230, 220, 0.45) !important;
+}
+/* Select arrow — ivory color, legível no dark bg */
+.form-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ECE6DC' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+}
+.form-select option {
+  background-color: #17203C;
+  color: #ECE6DC;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--awanar-gold) !important;
+  box-shadow: 0 0 0 0.2rem rgba(215, 165, 95, 0.2) !important;
+}
+
+/* ----------------------------------------------------------
+   13. DESTAQUES / HIGHLIGHTS — GOLDEN ACCENT
+   ---------------------------------------------------------- */
+
+/* Pílula/tag com bg-primary (ex: "Available for Hire") */
+a.bg-primary.rounded-pill,
+.bg-primary.rounded-pill {
+  background-color: var(--awanar-gold) !important;
+  color: var(--awanar-bg) !important;
+}
+
+/* Ícone de seta dentro da pílula */
+.bg-white.round-52.rounded-circle {
+  background: var(--awanar-bg) !important;
+}
+.bg-white.round-52.rounded-circle iconify-icon {
+  color: var(--awanar-gold) !important;
+}
+
+/* ----------------------------------------------------------
+   14. .text-dark — SOBRESCRITA GLOBAL
+       O template usa muito "text-dark" em links de menu e
+       ícones que precisam aparecer claros no fundo escuro.
+   ---------------------------------------------------------- */
+.text-dark {
+  color: var(--awanar-ivory) !important;
+}
+
+/* Links de navegação do menu dropdown */
+.header-link,
+a.header-link {
+  color: var(--awanar-ivory) !important;
+}
+.header-link:hover,
+a.header-link:hover {
+  color: var(--awanar-gold) !important;
+}
+
+/* ----------------------------------------------------------
+   15. BADGES — bg-white (ex: "Services", "Portfolio"…)
+   ---------------------------------------------------------- */
+.badge.bg-white,
+span.badge.bg-white {
+  background-color: var(--awanar-deep) !important;
+  color: var(--awanar-ivory) !important;
+  border: 1px solid rgba(215, 165, 95, 0.3) !important;
+}
+
+/* Badge .text-dark com border (ex: "UX Strategy", "UI Design") */
+.badge.text-dark,
+span.badge.text-dark {
+  color: var(--awanar-ivory) !important;
+  border-color: rgba(215, 165, 95, 0.35) !important;
+}
+
+/* HR com bg-white (linha divisória em seções escuras) */
+hr.bg-white,
+.border-line.bg-white {
+  background-color: rgba(215, 165, 95, 0.25) !important;
+  border-color: rgba(215, 165, 95, 0.25) !important;
+}
+
+/* ----------------------------------------------------------
+   16. SEÇÕES SEM BG EXPLÍCITO (herdam body, mas garantia)
+       stats-facts, why-choose-us, meet-our-team, faq,
+       get-in-touch
+   ---------------------------------------------------------- */
+.stats-facts,
+.why-choose-us,
+.meet-our-team,
+.faq,
+.get-in-touch {
+  background-color: var(--awanar-bg) !important;
+}
+
+/* ----------------------------------------------------------
+   17. NÚMERO DO STEP (01, 02…) — round-36 com text-dark
+       O círculo é bg-primary (gold), texto precisa ser escuro
+   ---------------------------------------------------------- */
+.round-36.bg-primary {
+  color: var(--awanar-bg) !important;
+}
+
+/* ----------------------------------------------------------
+   18. SCROLLBAR (estética)
+   ---------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--awanar-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--awanar-gold);
+  border-radius: 3px;
+}
+
+/* ----------------------------------------------------------
+   19. TEAM — Corrigir double-height no meet-team-img
+        O template usa ::before {padding-top:120%} para definir
+        altura. O wrapper interno <div style="padding-bottom:120%">
+        foi removido do HTML. Adicionamos background de fallback aqui.
+   ---------------------------------------------------------- */
+.meet-team-img {
+  background-color: var(--awanar-deep);
+}
+
+/* ----------------------------------------------------------
+   20. HEADER — AWANAR Wordmark
+   ---------------------------------------------------------- */
+.awanar-wordmark {
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--awanar-ivory) !important;
+  text-decoration: none !important;
+  line-height: 1;
+  display: inline-block;
+}
+.awanar-wordmark:hover {
+  color: var(--awanar-ivory) !important;
+  opacity: 0.8;
+}
+
+/* ----------------------------------------------------------
+   20. HERO — Video Background + Centred Copy
+   ---------------------------------------------------------- */
+
+/* Video fill — sem distorção */
+.awanar-hero-video {
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* Overlay premium: gradiente sutil top→bottom */
+.awanar-hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 7, 11, 0.52) 0%,
+    rgba(5, 7, 11, 0.38) 45%,
+    rgba(5, 7, 11, 0.62) 100%
+  );
+  z-index: 0;
+}
+
+/* Eyebrow */
+.awanar-hero-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--awanar-gold);
+  border: 1px solid rgba(215, 165, 95, 0.50);
+  border-radius: 2px;
+  padding: 0.42em 1.2em;
+}
+
+/* H1 */
+.awanar-hero-h1 {
+  font-size: clamp(4.5rem, 13vw, 11rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 0.92;
+  color: var(--awanar-ivory) !important;
+}
+
+/* Sub */
+.awanar-hero-sub {
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: rgba(236, 230, 220, 0.88) !important;
+  max-width: 520px;
+  letter-spacing: 0.025em;
+  line-height: 1.65;
+}
+
+/* CTA — Primário (gold sólido) */
+.awanar-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  background: var(--awanar-gold);
+  color: var(--awanar-bg) !important;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+.awanar-btn-primary:hover {
+  background: #c4904a;
+  color: var(--awanar-bg) !important;
+  transform: translateY(-2px);
+}
+
+/* CTA — Secundário (transparente, borda sutil) */
+.awanar-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.73rem 2rem;
+  background: transparent;
+  color: var(--awanar-ivory) !important;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  border-radius: 50px;
+  border: 1px solid rgba(236, 230, 220, 0.32);
+  text-decoration: none;
+  transition: border-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+.awanar-btn-secondary:hover {
+  border-color: var(--awanar-gold);
+  color: var(--awanar-gold) !important;
+  transform: translateY(-2px);
+}
+
+/* Responsivo — Mobile */
+@media (max-width: 576px) {
+  .awanar-hero-h1 {
+    font-size: clamp(3.8rem, 22vw, 6rem);
+  }
+  .awanar-hero-ctas {
+    flex-direction: column;
+    align-items: center;
+  }
+  .awanar-btn-primary,
+  .awanar-btn-secondary {
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+  }
+}
+
+/* ----------------------------------------------------------
+   21. LANG TOGGLE — EN | DE header switcher
+   ---------------------------------------------------------- */
+.awanar-lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  flex-shrink: 0;
+}
+.awanar-lang-btn {
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  padding: 0.2em 0;
+  cursor: pointer;
+  color: rgba(236, 230, 220, 0.30);
+  transition: color 0.2s ease;
+  line-height: 1;
+}
+.awanar-lang-btn.is-active {
+  color: var(--awanar-ivory);
+}
+.awanar-lang-btn:hover {
+  color: var(--awanar-gold);
+}
+.awanar-lang-sep {
+  font-size: 0.65rem;
+  color: rgba(215, 165, 95, 0.30);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
