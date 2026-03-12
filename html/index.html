@@ -722,29 +722,29 @@
 
             <!-- Right: form -->
             <div class="col-xl-8">
-              <form action="#" method="post" class="d-flex flex-column gap-5" data-aos="fade-up" data-aos-delay="200"
+              <form id="awanar-contact-form" action="/api/contact" method="post" class="d-flex flex-column gap-5" data-aos="fade-up" data-aos-delay="200"
                 data-aos-duration="1000">
                 <div class="row g-4">
 
                   <!-- 1 + 2: Nome + Empresa -->
                   <div class="col-md-6">
-                    <input type="text" class="form-control" id="contact-nome"
+                    <input type="text" class="form-control" id="contact-nome" name="nome"
                       placeholder="Full Name *" data-ph-en="Full Name *" data-ph-de="Vollständiger Name *" required>
                   </div>
                   <div class="col-md-6">
-                    <input type="text" class="form-control" id="contact-empresa"
+                    <input type="text" class="form-control" id="contact-empresa" name="empresa"
                       placeholder="Company / Brand *" data-ph-en="Company / Brand *" data-ph-de="Unternehmen / Marke *" required>
                   </div>
 
                   <!-- 3: E-mail -->
                   <div class="col-12">
-                    <input type="email" class="form-control" id="contact-email"
+                    <input type="email" class="form-control" id="contact-email" name="email"
                       placeholder="Professional Email *" data-ph-en="Professional Email *" data-ph-de="Professionelle E-Mail *" required>
                   </div>
 
                   <!-- 4 + 5: Necessidade + Timeline -->
                   <div class="col-md-6">
-                    <select class="form-select" id="contact-necessidade" required>
+                    <select class="form-select" id="contact-necessidade" name="necessidade" required>
                       <option value="" disabled selected data-en="What is your need? *" data-de="Was ist Ihre Anfrage? *">What is your need? *</option>
                       <option value="sprint" data-en="Brand Film Sprint (14 days)" data-de="Brand Film Sprint (14 Tage)">Brand Film Sprint (14 days)</option>
                       <option value="retainer" data-en="Documentary Retainer (3 months)" data-de="Documentary Retainer (3 Monate)">Documentary Retainer (3 months)</option>
@@ -753,7 +753,7 @@
                     </select>
                   </div>
                   <div class="col-md-6">
-                    <select class="form-select" id="contact-timeline" required>
+                    <select class="form-select" id="contact-timeline" name="timeline" required>
                       <option value="" disabled selected data-en="Estimated Timeline *" data-de="Geschätzter Zeitplan *">Estimated Timeline *</option>
                       <option value="2semanas" data-en="Next 2 weeks" data-de="Nächste 2 Wochen">Next 2 weeks</option>
                       <option value="1-3m" data-en="1 to 3 months" data-de="1 bis 3 Monate">1 to 3 months</option>
@@ -764,7 +764,7 @@
 
                   <!-- 6 + 7: Uso + Idioma (Budget removido — alinhamento financeiro na conversa comercial) -->
                   <div class="col-md-6">
-                    <select class="form-select" id="contact-uso">
+                    <select class="form-select" id="contact-uso" name="uso">
                       <option value="" disabled selected data-en="How will the content be used?" data-de="Wie wird der Inhalt genutzt?">How will the content be used?</option>
                       <option value="ads" data-en="Ads / social media" data-de="Ads / Social Media">Ads / social media</option>
                       <option value="pr" data-en="PR / press" data-de="PR / Presse">PR / press</option>
@@ -776,7 +776,7 @@
 
                   <!-- 8: Idioma -->
                   <div class="col-md-6">
-                    <select class="form-select" id="contact-idioma" required>
+                    <select class="form-select" id="contact-idioma" name="idioma" required>
                       <option value="" disabled selected data-en="Preferred Language *" data-de="Bevorzugte Sprache *">Preferred Language *</option>
                       <option value="pt" data-en="Portuguese" data-de="Portugiesisch">Portuguese</option>
                       <option value="en" data-en="English (EN)" data-de="Englisch (EN)">English (EN)</option>
@@ -786,7 +786,7 @@
 
                   <!-- 9: Sobre o projeto -->
                   <div class="col-12">
-                    <textarea class="form-control" id="contact-projeto" rows="3"
+                    <textarea class="form-control" id="contact-projeto" name="projeto" rows="3"
                       placeholder="Briefly describe the context." data-ph-en="Briefly describe the context." data-ph-de="Kurze Beschreibung des Kontexts."></textarea>
                   </div>
 
@@ -799,6 +799,7 @@
                     class="btn-icon bg-white text-dark round-52 rounded-circle hstack justify-content-center fs-7 shadow-sm"></iconify-icon>
                 </button>
 
+                <div id="contact-status" class="mt-3 fs-6 text-center" role="status" aria-live="polite" style="display:none;"></div>
               </form>
             </div>
 
@@ -861,6 +862,63 @@
   <script src="../assets/js/custom.js"></script>
   <!-- solar icons -->
   <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+  <script>
+  /* Contact form \u2014 async submit handler */
+  (function () {
+    var form   = document.getElementById('awanar-contact-form');
+    if (!form) return;
+    var status = document.getElementById('contact-status');
+    var btn    = form.querySelector('button[type="submit"]');
+
+    var MSG = {
+      en: {
+        success: 'Message sent. We will review your request and be in touch.',
+        error:   'Something went wrong. Please try again or email agency@redeawanar.com.'
+      },
+      de: {
+        success: 'Nachricht gesendet. Wir prüfen Ihre Anfrage und melden uns.',
+        error:   'Etwas ist schiefgelaufen. Bitte erneut versuchen oder agency@redeawanar.com schreiben.'
+      }
+    };
+
+    function showStatus(type) {
+      if (!status) return;
+      var lang = document.documentElement.getAttribute('data-lang') || 'en';
+      var msgs = MSG[lang] || MSG.en;
+      status.textContent = type === 'success' ? msgs.success : msgs.error;
+      status.style.display = 'block';
+      status.style.color   = type === 'success' ? 'var(--awanar-gold)' : '#e05252';
+      if (type === 'success') {
+        setTimeout(function () { status.style.display = 'none'; }, 8000);
+      }
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (status) status.style.display = 'none';
+      btn.disabled = true;
+
+      var data = {};
+      ['nome','empresa','email','necessidade','timeline','uso','idioma','projeto'].forEach(function (k) {
+        var el = form.querySelector('[name="' + k + '"]');
+        if (el) data[k] = el.value;
+      });
+
+      fetch('/api/contact', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(data),
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (json) {
+        if (json.ok) { showStatus('success'); form.reset(); }
+        else         { showStatus('error'); }
+      })
+      .catch(function () { showStatus('error'); })
+      .finally(function () { btn.disabled = false; });
+    });
+  }());
+  </script>
 </body>
 
 </html>
