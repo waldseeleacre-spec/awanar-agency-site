@@ -863,41 +863,46 @@
   <!-- solar icons -->
   <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
   <script>
-  /* Contact form \u2014 async submit handler */
+  /* Contact form — async submit handler */
   (function () {
-    var form   = document.getElementById('awanar-contact-form');
+    var form    = document.getElementById('awanar-contact-form');
     if (!form) return;
-    var status = document.getElementById('contact-status');
-    var btn    = form.querySelector('button[type="submit"]');
+    var errBox  = document.getElementById('contact-status');
+    var btn     = form.querySelector('button[type="submit"]');
+    var btnText = btn && btn.querySelector('.btn-text');
 
-    var MSG = {
-      en: {
-        success: 'Message sent. We will review your request and be in touch.',
-        error:   'Something went wrong. Please try again or email agency@redeawanar.com.'
-      },
-      de: {
-        success: 'Nachricht gesendet. Wir prüfen Ihre Anfrage und melden uns.',
-        error:   'Etwas ist schiefgelaufen. Bitte erneut versuchen oder agency@redeawanar.com schreiben.'
-      }
+    /* Error copy — EN / DE only */
+    var ERR = {
+      en: 'Something went wrong. Please try again or email agency@redeawanar.com.',
+      de: 'Etwas ist schiefgelaufen. Bitte erneut versuchen oder agency@redeawanar.com schreiben.'
     };
 
-    function showStatus(type) {
-      if (!status) return;
-      var lang = document.documentElement.getAttribute('data-lang') || 'en';
-      var msgs = MSG[lang] || MSG.en;
-      status.textContent = type === 'success' ? msgs.success : msgs.error;
-      status.style.display = 'block';
-      status.style.color   = type === 'success' ? 'var(--awanar-gold)' : '#e05252';
-      if (type === 'success') {
-        setTimeout(function () { status.style.display = 'none'; }, 8000);
-      }
+    function currentLang() {
+      return document.documentElement.getAttribute('data-lang') || 'en';
+    }
+
+    function showError() {
+      if (!errBox) return;
+      errBox.textContent   = ERR[currentLang()] || ERR.en;
+      errBox.style.display = 'block';
+      errBox.style.color   = '#e05252';
+    }
+
+    function hideError() {
+      if (errBox) errBox.style.display = 'none';
+    }
+
+    function markSent() {
+      if (btnText) btnText.textContent = currentLang() === 'de' ? 'gesendet' : 'sent';
+      /* btn stays disabled — prevents double-submit */
     }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (status) status.style.display = 'none';
+      hideError();
       btn.disabled = true;
 
+      /* Collect all field values by name */
       var data = {};
       ['nome','empresa','email','necessidade','timeline','uso','idioma','projeto'].forEach(function (k) {
         var el = form.querySelector('[name="' + k + '"]');
@@ -907,15 +912,22 @@
       fetch('/api/contact', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(data),
+        body:    JSON.stringify(data)
       })
       .then(function (r) { return r.json(); })
-      .then(function (json) {
-        if (json.ok) { showStatus('success'); form.reset(); }
-        else         { showStatus('error'); }
+      .then(function (res) {
+        if (res.ok) {
+          markSent();      /* button text -> sent / gesendet, stays disabled */
+          form.reset();    /* clear all fields */
+        } else {
+          showError();
+          btn.disabled = false;  /* allow retry */
+        }
       })
-      .catch(function () { showStatus('error'); })
-      .finally(function () { btn.disabled = false; });
+      .catch(function () {
+        showError();
+        btn.disabled = false;    /* allow retry */
+      });
     });
   }());
   </script>
